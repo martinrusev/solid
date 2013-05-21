@@ -1,0 +1,23 @@
+@import "compass/reset";
+@import "compass/css3";
+@import "_variables.scss";
+#header {
+	.logo {
+		margin: 0 auto;
+		text-align: center;
+		display: block;
+	}
+	img {
+		float: none;
+	}
+}
+.error_trace {
+	background:white;
+	border: $default_border;
+	@include border-radius(6px);
+	p {
+		font-size: 1.4em;
+		line-height: 1.6em;
+		padding: 20px;
+	}
+}

@@ -1,0 +1,251 @@
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline; }
+
+html {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle; }
+
+q, blockquote {
+  quotes: none; }
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none; }
+
+a img {
+  border: none; }
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
+  display: block; }
+
+body {
+  font-family: 'Arimo', Helvetica, sans-serif;
+  font-size: 62.5%;
+  background: #f4f9fc; }
+
+@font-face {
+  font-family: "Batch";
+  src: url("../fonts/batch.eot");
+  src: url("../fonts/batch.eot?#iefix") format("embedded-opentype"), url("../fonts/batch.woff") format("woff"), url("../fonts/batch.ttf") format("truetype"), url("../fonts/batch.svg#batchregular") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+.batch {
+  font-family: "Batch";
+  font-size: 1em;
+  line-height: 1em;
+  display: inline-block; }
+.batch:before {
+  content: attr(data-icon); }
+
+#header {
+  height: 85px;
+  background: #232d39;
+  border-bottom: 3px solid #0f1318; }
+#header img {
+  float: left;
+  margin: 14px 0px; }
+#header ul {
+  float: right; }
+#header ul li {
+  float: left; }
+#header ul li a {
+  font-size: 1.6em;
+  text-decoration: none;
+  outline: none;
+  display: block;
+  color: white;
+  padding: 57px 14px 15px;
+  position: relative; }
+#header ul li a:hover, #header ul li a.active {
+  background: #3d8dc4; }
+#header ul li a span {
+  position: absolute;
+  top: 26px;
+  left: 50%;
+  margin-left: -0.5em;
+  font-size: 1.2em; }
+
+.button {
+  border: 0px;
+  text-decoration: none;
+  cursor: pointer;
+  color: white;
+  background: #89bc32;
+  border: 2px solid #89bc32;
+  outline: none;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+  font-weight: bold;
+  padding: 8px;
+  padding-left: 12px;
+  padding-right: 12px; }
+.button:hover, .button.active {
+  color: #89bc32;
+  background: white; }
+.button.cancel {
+  border: 2px solid #cccccc;
+  color: #cccccc;
+  background: white; }
+.button.cancel:hover {
+  background: #cccccc;
+  color: white;
+  border: 2px solid #b7b7b7; }
+.button.delete, .button.red {
+  border: 2px solid #ce0a31;
+  background: #ce0a31;
+  color: white; }
+.button.delete:hover, .button.red:hover {
+  background: white;
+  border: 2px solid #ce0a31;
+  color: #ce0a31; }
+
+.wrapper {
+  width: 1280px;
+  margin: 0 auto; }
+
+#breadcrumb {
+  text-align: left; }
+#breadcrumb h2 {
+  display: inline-block;
+  font-size: 3em;
+  padding: 30px 0px;
+  color: #363636; }
+
+@media screen and (max-width: 1300px) {
+  .wrapper {
+    width: 1000px; } }
+#header .logo {
+  margin: 0 auto;
+  text-align: center;
+  display: block; }
+#header img {
+  float: none; }
+
+div.center {
+  margin: 0 auto;
+  width: 500px;
+  margin-top: 40px; }
+div.center .error {
+  float: left;
+  background: #bc0000;
+  margin-top: 4px;
+  font-size: 1.4em;
+  padding: 8px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  color: white;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px; }
+div.center .message {
+  float: left;
+  clear: left;
+  width: 481px;
+  padding: 10px;
+  padding-right: 0px;
+  padding-left: 20px;
+  background: #ce0a31;
+  font-size: 1.6em;
+  color: white;
+  line-height: 1.4em; }
+div.center .message a {
+  color: white; }
+div.center .message.green {
+  background: #8abd56; }
+div.center input[type=text], div.center input[type=password] {
+  width: 410px;
+  height: 40px;
+  border: 0px;
+  float: left;
+  border: 2px solid #e8edf0;
+  padding-left: 35px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -o-border-radius: 6px;
+  border-radius: 6px;
+  color: #727272;
+  position: relative; }
+div.center input[type=text].placeholder, div.center input[type=password].placeholder {
+  color: #cccccc; }
+div.center input[type=text]:-moz-placeholder, div.center input[type=password]:-moz-placeholder {
+  color: #cccccc; }
+div.center input[type=text]::-webkit-input-placeholder, div.center input[type=password]::-webkit-input-placeholder {
+  color: #cccccc; }
+div.center input[type=text]:focus, div.center input[type=password]:focus {
+  border: 2px solid #F0F0F0;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+  background: white;
+  color: #2B3239;
+  border: #e8edf0; }
+div.center ul {
+  float: left;
+  margin-top: 15px; }
+div.center ul li {
+  float: left;
+  width: 450px;
+  clear: left;
+  margin: 18px;
+  margin-bottom: 10px;
+  margin-top: 0px;
+  margin-left: 25px;
+  margin-right: 15px; }
+div.center ul li.last {
+  margin-top: 10px; }
+
+div.login_box {
+  background: white;
+  border: 2px solid #e8edf0;
+  float: left;
+  width: 100%;
+  padding-bottom: 10px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+  margin-bottom: 20px; }
+div.login_box .button {
+  float: right; }
+div.login_box .background-label {
+  width: 16px;
+  height: 16px;
+  margin-right: -30px;
+  margin-top: 16px;
+  margin-left: 10px;
+  float: left;
+  position: relative;
+  z-index: 100; }
+div.login_box .icon {
+  color: #cccccc;
+  position: relative;
+  float: left;
+  top: 33px;
+  left: 8px;
+  font-size: 2em;
+  z-index: 9; }

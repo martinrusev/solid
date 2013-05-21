@@ -1,0 +1,7 @@
+include LICENSE
+include MANIFEST.in
+recursive-include solid/web/media/css *
+recursive-include solid/web/media/images *
+recursive-include solid/web/templates *
+recursive-include tests *
+

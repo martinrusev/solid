@@ -1,0 +1,92 @@
+@import "compass/reset";
+@import "compass/css3";
+@import "_variables.scss";
+
+
+
+#list {
+	ul {
+		li {
+			background: $element_background;
+			overflow: hidden;
+			border-top: 2px solid $border_color;
+			position: relative;
+
+			&:last-child {
+				border-bottom: 2px solid $border_color;
+			}
+
+			.sidebar {
+				width: 150px;
+				height: 95px;
+				padding: 7px;
+				display: block;
+				float: left;
+				border-left: 2px solid $border_color;
+				border-right: 2px solid $border_color;
+				background: $sidebar_background;
+				@include box-sizing(border-box);
+
+				> span {
+					font-size: 3.6em;
+					font-weight: bold;
+					display: inline-block;
+					text-align: center;
+					width: 100%;
+					margin: 18px 0 11px;
+					color: $main_font_color;
+				}
+
+				p {
+					font-size: 1.4em;
+					color: black;
+
+					span {
+						color: $secondary_font_color;
+					}
+				}
+			}
+
+			.info {
+				padding: 20px 60px 20px 20px; 
+				width: $body_width_wide - $sidebar_width;
+				@include box-sizing(border-box);
+				float: left;
+				position: relative;
+
+				h3 {
+					font-size: 2.4em;
+					color: $main_font_color;
+					margin-bottom: 14px;
+				}
+
+				p {
+					font-size: 1.6em;
+					color: $secondary_font_color;
+				}
+
+				a {
+					position: absolute;
+					top: 20px;
+					right: 0px;
+					font-size: 1.6em;
+					text-decoration: none;
+					color: black;
+				}
+			}
+
+		}
+
+	}
+	
+}
+
+@media screen and (max-width: 1300px) {
+	.wrapper {
+		width: $body_width;
+	}
+
+	#list ul li .info {
+		width: $body_width - $sidebar_width;;
+	}
+}
