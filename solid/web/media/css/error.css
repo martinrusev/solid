@@ -59,7 +59,7 @@ body {
   border-bottom: 3px solid #0f1318; }
 #header img {
   float: left;
-  margin: 14px 0px; }
+  margin: 19px 0px; }
 #header ul {
   float: right; }
 #header ul li {
@@ -70,7 +70,7 @@ body {
   outline: none;
   display: block;
   color: white;
-  padding: 57px 14px 15px;
+  padding: 57px 25px 15px;
   position: relative; }
 #header ul li a:hover, #header ul li a.active {
   background: #3d8dc4; }
@@ -86,8 +86,8 @@ body {
   text-decoration: none;
   cursor: pointer;
   color: white;
-  background: #89bc32;
-  border: 2px solid #89bc32;
+  background: #3d8dc4;
+  border: 2px solid #3d8dc4;
   outline: none;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
@@ -99,8 +99,9 @@ body {
   padding-left: 12px;
   padding-right: 12px; }
 .button:hover, .button.active {
-  color: #89bc32;
-  background: white; }
+  border: 2px solid #3d8dc4;
+  background: white;
+  color: #3d8dc4; }
 .button.cancel {
   border: 2px solid #cccccc;
   color: #cccccc;
@@ -119,7 +120,7 @@ body {
   color: #ce0a31; }
 
 .wrapper {
-  width: 1280px;
+  width: 1300px;
   margin: 0 auto; }
 
 #breadcrumb {
@@ -130,9 +131,35 @@ body {
   padding: 30px 0px;
   color: #363636; }
 
-@media screen and (max-width: 1300px) {
+@media screen and (max-width: 1400px) {
   .wrapper {
     width: 1000px; } }
+input[type=text], input[type=password] {
+  border: 2px solid #F0F0F0;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+  background: white;
+  color: #2B3239; }
+input[type=text].placeholder, input[type=password].placeholder {
+  color: #cccccc; }
+input[type=text]:-moz-placeholder, input[type=password]:-moz-placeholder {
+  color: #cccccc; }
+input[type=text]::-webkit-input-placeholder, input[type=password]::-webkit-input-placeholder {
+  color: #cccccc; }
+input[type=text]:focus, input[type=password]:focus {
+  border: 2px solid #F0F0F0;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+  background: white;
+  color: #2B3239;
+  border-color: #3d8dc4; }
+
 #header .logo {
   margin: 0 auto;
   text-align: center;

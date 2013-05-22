@@ -7,18 +7,38 @@
 	<title>Solid {{ version }} - {% block title %} {% endblock %}</title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<link rel="icon" type="image/png" href="/media/images/favicon.png" />
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<link rel="icon" type="image/png" href="/media/images/favicon.png" />
 	<link rel="stylesheet" href="/media/css/style.css" />
 	{% block header %}{% endblock %}
 </head>
 <body>
-	<div id="heading">
+	<div id="header">
+		<div class="wrapper">
+			<a class='logo' href="/">
+				<img src="/media/images/logo.png" alt="Solid logo" />
+			</a>
+			
+			<ul>
+				<li>
+					<a href="/" class="active"><span class="batch" data-icon="&#xF161;"></span>Dashboard</a>
+				</li>
+				<li>
+					<a href=""><span class="batch" data-icon="&#xF17B;"></span>Settings</a>
+				</li>
+				<li>
+					<a href="{{ base_url|url('logout') }}"><span class="batch" data-icon="&#xF069;"></span>Logout</a>
+				</li>
+			</ul>
+		</div>
+	</div><!-- header END -->
+	<div id="breadcrumb">
 			<div class="wrapper">
 				<h2>{% block breadcrumb %}{% endblock breadcrumb %}</h2>
 			</div>
-		</div>
-	<div id="content" {% block content_class %}{% endblock content_class %} >
+	</div><!-- breadcrumb END -->
+	<div id="content">
 	{% block content %}{% endblock %}
 	</div><!-- content END --> 
 <script type="text/javascript" src='/media/js/libs/jquery.min.js'></script>

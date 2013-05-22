@@ -1,7 +1,7 @@
 $body_background: #f4f9fc;
-$navigation_background: #232d39;
+
 $navigation_border: #0f1318;
-$navigation_active_color: #3d8dc4;
+
 $border_color: #e8edf0;
 $sidebar_background: #fcfcfc;
 $element_background: #ffffff;
@@ -9,7 +9,7 @@ $main_font_color: #363636;
 $secondary_font_color: #b8bfc1;
 
 $body_width: 1000px;
-$body_width_wide: 1280px;
+$body_width_wide: 1300px;
 
 $sidebar_width: 150px;
 
@@ -17,6 +17,8 @@ $grey: #ccc;
 $green: #89BC32;
 $light_grey: #b7b7b7;
 $red: #CE0A31;
+$light_blue: #3d8dc4;
+$dark_blue: #232d39;
 
 $default_border: 2px solid $border_color;
 
@@ -33,14 +35,14 @@ $default_border: 2px solid $border_color;
 }
 
 @mixin input-default { 
-	border: 2px solid #F0F0F0;
+	border: 2px solid #F0F0F0; 
 	@include border-radius(4px);
 	background: white;
 	color: #2B3239;
 }
 @mixin input-active {
 	@include input-default;
-	border: $border_color;
+	border-color: $light_blue; 
 }
 
 body {
@@ -72,16 +74,14 @@ body {
 }
 #header {
 	height: 85px;
-	background: $navigation_background;
+	background: $dark_blue;
 	border-bottom: 3px solid $navigation_border;
-
 	img {
 		float: left;
-		margin: 14px 0px;
+		margin: 19px 0px;
 	}
 	ul {
 		float: right;
-
 		li {
 			float: left;
 			a {
@@ -90,12 +90,11 @@ body {
 				outline: none;
 				display: block;
 				color: white;
-				padding: 57px 14px 15px;
+				padding: 57px 25px 15px;
 				position: relative;
 				&:hover, &.active {
-					background: $navigation_active_color;
-				}
-
+					background: $light_blue;
+				}	
 				span {
 					position: absolute;
 					top: 26px;
@@ -112,8 +111,8 @@ body {
 	text-decoration: none;
 	cursor: pointer; 
 	color: white;
-	background: $green;
-	border: 2px solid $green; 	
+	background: $light_blue;
+	border: 2px solid $light_blue;
 	outline: none;
 	@include border-radius(4px);
 	font-weight: bold;
@@ -122,8 +121,9 @@ body {
 		right: 12px; 
 	}
 	&:hover, &.active {
-		color: $green;
+		border: 2px solid $light_blue;
 		background: white;
+		color: $light_blue;
 	}
 	&.cancel {
 		border: 2px solid $grey;
@@ -154,7 +154,6 @@ body {
 
 #breadcrumb {
 	text-align: left;
-
 	h2 {
 		display: inline-block;
 		font-size: 3em;
@@ -163,8 +162,15 @@ body {
 	}
 }
 
-@media screen and (max-width: 1300px) {
+@media screen and (max-width: 1400px) {
 	.wrapper {
 		width: $body_width;
 	}
+}
+input[type=text], input[type=password] {
+		@include input-placeholder($grey); 
+		@include input-default;
+		 &:focus {
+			@include input-active;
+		} 
 }

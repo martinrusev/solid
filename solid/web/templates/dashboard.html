@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block breadcrumb %}Dashboard{% endblock breadcrumb %}
+{% block content %}
+<ul id="exceptions-list">
+<li>
+	<div class="wrapper">
+		<div class="sidebar">
+			<span>76</span>
+			<p><span class="batch" data-icon="&#xF090;"></span> 21.05.2013 13:34</p>
+		</div>
+		<div class="info">
+			<h3>django.db.models.query in get</h3>
+			<p>MultipleObjectsReturned: get() returned more than one RestaurantMetaData -- it returned 2! Lookup</p>
+			<a href="">Expand</a>
+		</div>
+	</div>
+</li>
+</ul>
+{% endblock content %}

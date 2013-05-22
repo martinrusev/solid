@@ -7,9 +7,11 @@
 		margin: 0 auto;
 		text-align: center;
 		display: block;
+
 	}
 	img {
 		float: none;
+
 	}
 }
 div.center {
@@ -46,19 +48,11 @@ div.center {
 		} 
 	}
 	input[type=text], input[type=password] {
+		position: relative;
 		width: 410px;
 		height: 40px;
-		border: 0px; 
 		float: left;
-		border: $default_border;
 		padding-left: 35px;
-		@include border-radius(6px);
-		@include input-placeholder($grey); 
-		color: #727272;
-		position: relative;
-		 &:focus {
-			@include input-active;
-		} 
 	}
 	ul {
 		float: left;
