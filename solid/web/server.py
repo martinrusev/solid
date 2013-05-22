@@ -7,6 +7,7 @@ from solid.core import settings
 
 from solid.web.apps.dashboard.views import DashboardView
 from solid.web.apps.auth.views import LoginView, CreateInitialUserView, LogoutView
+from solid.web.apps.api.views import ApiException
 
 app_settings = {
 	"static_path": os.path.join(PROJECT_ROOT, "media"),
@@ -23,6 +24,8 @@ handlers = [
 	url(r"/login", LoginView, name='login'),
 	url(r"/logout", LogoutView, name='logout'),
 	url(r"/create_user", CreateInitialUserView, name='create_user'),
+	# API
+	(r"/api/exception/{0}".format(settings.SECRET_KEY), ApiException),
 	# Static
 	(r"/media/(.*)", tornado.web.StaticFileHandler, {"path": app_settings['static_path']}),
 ]

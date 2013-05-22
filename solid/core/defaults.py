@@ -31,7 +31,7 @@ key = config.get('secret_key', None)
 if key != None and len(key) > 0:
     SECRET_KEY = key
 else:
-    SECRET_KEY = 'TGJKhSSeZaPZr24W6GlByAaLVe0VKvg8qs+8O7y=' #Don't break the dashboard
+    SECRET_KEY = 'p86f9cfgEuvl4HFGthR1TBAUE7Sfiz8NoDGTeNHh7Sw' #Don't break the dashboard
 
 # Always 
 ACL = 'True'
