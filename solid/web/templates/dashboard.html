@@ -3,18 +3,39 @@
 {% block breadcrumb %}Dashboard{% endblock breadcrumb %}
 {% block content %}
 <ul id="exceptions-list">
-<li>
-	<div class="wrapper">
-		<div class="sidebar">
-			<span>76</span>
-			<p><span class="batch" data-icon="&#xF090;"></span> 21.05.2013 13:34</p>
+	{% for exception in exceptions.clone()  %}
+	<li>
+		<div class="wrapper">
+			<div class="sidebar">
+				<span>{{ exception.total_occurrences }}</span>
+				<p>
+					<span class="batch" data-icon="&#xF090;"></span>
+					<span class="time">{{ exception.last_occurrence|date_local }}</span>
+				</p>
+			</div>
+			<div class="info">
+				{% if exception.exception_class  %}
+					<h3>{{ exception.exception_class }}</h3>	
+				{% endif %}
+				{% if exception.backtrace %}
+				<p>
+					{% for line in exception.backtrace %}
+						<span >{{ loop.index }}. {{ line }} <br></span>
+						{% if loop.index == 5 %}
+						<p class="hidden" id='full-trace-{{ exception._id }}'>{% endif %}
+						{% if loop.last %}</p>{% endif %}
+					{% endfor %}
+				</p>
+				{% endif %}
+				{% if exception.additional_data|check_additional_data %}
+					<ul class='exception_data'>
+						{{ exception.additional_data.0|exceptions_dict }}
+					</ul>
+				{% endif %}
+				<a href="">Expand</a>
+			</div>
 		</div>
-		<div class="info">
-			<h3>django.db.models.query in get</h3>
-			<p>MultipleObjectsReturned: get() returned more than one RestaurantMetaData -- it returned 2! Lookup</p>
-			<a href="">Expand</a>
-		</div>
-	</div>
-</li>
+	</li>
+	{% endfor %}
 </ul>
 {% endblock content %}

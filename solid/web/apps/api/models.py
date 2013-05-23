@@ -1,4 +1,4 @@
-from solid.web.apps.core.models import BaseModel
+from solid.web.apps.core.basemodel import BaseModel
 from solid.utils.dates import unix_utc_now
 from hashlib import md5
 
@@ -22,7 +22,7 @@ class ApiExceptionModel(BaseModel):
 		
 		exception_string = "{0}{1}{2}".format(exception_class, url, backtrace)
 		exception_id = md5(exception_string).hexdigest()
-		
+
 		additional_data = {'occurrence': now}
 
 		if message: additional_data['message'] = message
@@ -48,7 +48,7 @@ class ApiExceptionModel(BaseModel):
 			entry['additional_data'] = [additional_data]
 			entry['total_occurrences'] = 1
 
-			self.collection.insert(exception)
+			self.collection.save(entry)
 			self.collection.ensure_index('message')
 
 api_exception_model = ApiExceptionModel()

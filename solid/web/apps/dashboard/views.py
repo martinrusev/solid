@@ -1,5 +1,7 @@
 from tornado.web import authenticated
+
 from solid.web.apps.core.baseview import BaseView
+from solid.web.apps.dashboard.models import exception_model
 
 
 class DashboardView(BaseView):
@@ -10,4 +12,8 @@ class DashboardView(BaseView):
 
 	@authenticated
 	def get(self):
-		self.render("dashboard.html",)
+
+		exceptions = exception_model.get_all()
+
+		self.render("dashboard.html",
+			exceptions=exceptions)

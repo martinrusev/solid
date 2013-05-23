@@ -1,5 +1,5 @@
 import tornado.web
-from solid.web.api.models import api_exception_model
+from solid.web.apps.api.models import api_exception_model
 
 class ApiException(tornado.web.RequestHandler):
 

@@ -284,7 +284,7 @@ def render(template, *args, **kwargs):
 	env.filters['to_int'] =  to_int
 	env.filters['time_in_words'] = time_in_words 
 	env.filters['exceptions_dict'] = exceptions_dict
-	env.filters['test_additional_data'] = check_additional_data
+	env.filters['check_additional_data'] = check_additional_data
 	env.filters['clean_slashes'] = clean_slashes
 	env.filters['beautify_json'] = beautify_json
 	env.filters['get_active_page'] = get_active_page # Used to mark links as active

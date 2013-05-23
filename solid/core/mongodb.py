@@ -60,13 +60,13 @@ class MongoBackend():
 		return self._database
 
 
-	def get_collection(self, collection, append=None, prefix=''):
+	def get_collection(self, collection, prefix=''):
 		db = self.get_database()
 
-		if collection in self.internal_collections or append is False:
-			collection = "{0}".format(collection) # protect the collection that Amon uses internally
+		if collection in self.internal_collections:
+			collection = "{0}".format(collection)
 		else:
-			collection = "amon_{0}{1}".format(prefix, collection)
+			collection = "solid_{0}{1}".format(prefix, collection)
 
 		collection = db[collection]
 
