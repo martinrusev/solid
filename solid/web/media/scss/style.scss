@@ -1,10 +1,15 @@
 @import "compass/reset";
 @import "compass/css3";
 @import "_variables.scss";
-
-
+@import "_base.scss";
+.exception-wrapper{
+	display: table;
+	div.info, div.sidebar {
+		display: table-cell;
+	}
+}
 ul#exceptions-list {
-	li {
+	> li {
 		background: $element_background;
 		overflow: hidden;
 		border-top: $default_border;
@@ -14,23 +19,29 @@ ul#exceptions-list {
 			border-bottom: $default_border;
 		}
 		.sidebar {
-			width: 150px;
-			height: 95px;
+			width: $sidebar_width;
 			padding: 7px;
-			display: block;
+			height: 100%;
 			float: left;
-			border-left: $default_border;
-			border-right: $default_border;
-			background: $sidebar_background;
+			position: absolute;
 			@include box-sizing(border-box);
+			.occurrences {
+				background: #f8f8f8;
+				border: 3px solid $border_color;
+				@include border-radius(50%);
+				padding-top: 17px;
+				padding-bottom: 17px;
+				font-size: 2.8em;
+				font-weight: bold;
+				text-align: center;
+			}
 
 			> span {
-				font-size: 3.6em;
-				font-weight: bold;
+				
 				display: inline-block;
-				text-align: center;
+				
 				width: 100%;
-				margin: 18px 0 11px;
+				margin: 10px 0 11px;
 				color: $main_font_color;
 			}
 
@@ -45,30 +56,27 @@ ul#exceptions-list {
 		}
 
 		.info {
-			padding: 20px 60px 20px 20px; 
+			padding: 20px 0px 20px 20px; 
 			width: $body_width_wide - $sidebar_width;
 			@include box-sizing(border-box);
 			float: left;
 			position: relative;
-
+			height: 100%;
+			margin-left: $sidebar_width;
+			.last_occurence {
+				font-size: 1.4em;
+				margin-bottom: 10px;
+				color: $dark_grey;
+			}
 			h3 {
 				font-size: 2.4em;
 				color: $main_font_color;
 				margin-bottom: 14px;
 			}
-
-			p {
-				font-size: 1.6em;
-				color: $secondary_font_color;
-			}
-
-			a {
-				position: absolute;
-
-				top: 37px;
-				right: 0px;
-				font-size: 1.6em;
-				color: black;
+			h4 {
+				font-size: 1.8em;
+				color: $grey;
+				margin-bottom: 10px;
 			}
 		}
 
@@ -78,5 +86,13 @@ ul#exceptions-list {
 @media screen and (max-width: 1400px) {
 	#exceptions-list ul li .info {
 		width: $body_width - $sidebar_width;
+	}
+}
+pre {
+	font-size: 1.4em;
+	background: #f4f4f4;
+	&.highlight {
+		background: $light_blue;
+		color: white;
 	}
 }

@@ -5,34 +5,106 @@
 <ul id="exceptions-list">
 	{% for exception in exceptions.clone()  %}
 	<li>
-		<div class="wrapper">
+		<div class="wrapper exception-wrapper">
 			<div class="sidebar">
-				<span>{{ exception.total_occurrences }}</span>
-				<p>
-					<span class="batch" data-icon="&#xF090;"></span>
-					<span class="time">{{ exception.last_occurrence|date_local }}</span>
-				</p>
+				<span class='occurrences'>{{ exception.total_occurrences }}</span>
 			</div>
 			<div class="info">
 				{% if exception.exception_class  %}
 					<h3>{{ exception.exception_class }}</h3>	
 				{% endif %}
-				{% if exception.backtrace %}
-				<p>
-					{% for line in exception.backtrace %}
-						<span >{{ loop.index }}. {{ line }} <br></span>
-						{% if loop.index == 5 %}
-						<p class="hidden" id='full-trace-{{ exception._id }}'>{% endif %}
-						{% if loop.last %}</p>{% endif %}
-					{% endfor %}
-				</p>
-				{% endif %}
-				{% if exception.additional_data|check_additional_data %}
-					<ul class='exception_data'>
-						{{ exception.additional_data.0|exceptions_dict }}
-					</ul>
-				{% endif %}
-				<a href="">Expand</a>
+				<h4>{{ exception.message }}</h4>
+				<div class="last_occurence">
+					<span class="batch" data-icon="&#xF090;"></span>
+					<span>{{ exception.last_occurrence|date_local }}</span>
+				</div>
+				{{ exception.context.filepath }} - {{ exception.context.culprit_lineno }}
+				{% strip %}
+				<pre>
+					<code>
+						{% for line in exception.context.pre_context  %}
+							{{ line }}
+						{% endfor %}
+					</code>
+				</pre>
+				<pre class='highlight'>
+					<code>
+						{% for line in exception.context.context_line  %}
+							{{ line }}
+						{% endfor %}
+					</code>
+				</pre>
+				<pre>
+					<code>
+						{% for line in exception.context.post_context  %}
+							{{ line }}
+						{% endfor %}
+					</code>
+				</pre>
+				{% endstrip %}
+				<div class="tabbable"> <!-- Only required for left/right tabs -->
+				  <ul class="nav nav-tabs">
+					{% if exception.backtrace %}
+						<li class="active"><a href="#tab1" data-toggle="tab">Backtrace</a></li>
+				   {% endif %}
+				   {% if exception.request %}
+						<li><a href="#tab2" data-toggle="tab">Request</a></li>
+				   {% endif %}
+						
+						<li><a href="#tab3" data-toggle="tab">History</a></li>
+				  </ul>
+				  <div class="tab-content">
+					{% if exception.backtrace %}
+					<div class="tab-pane active" id="tab1">
+					  <p>
+						{% for line in exception.backtrace %}
+							<span >{{ loop.index }}. {{ line }} <br></span>
+							{% if loop.index == 5 %}
+							<p class="hidden" id='full-trace-{{ exception._id }}'>{% endif %}
+							{% if loop.last %}</p>{% endif %}
+						{% endfor %}
+						</p>
+					</div>
+					{% endif %}
+					 {% if exception.request %}
+					<div class="tab-pane" id="tab2">
+						<table>
+							<tr>
+								<td>URL</td>
+								<td>{{ exception.request.url }}</td>
+							</tr>
+							<tr>
+								<td>Method</td>
+								<td>{{ exception.request.method }}</td>
+							</tr>
+							<tr>
+								<td>Cookies</td>
+								<td>{{ exception.request.cookies }}</td>
+							</tr>
+							<tr>
+								<td>Headers</td>
+								<td>{{ exception.request.headers }}</td>
+							</tr>
+						</table>
+					</div>
+					{% endif %}
+
+					<div class="tab-pane" id="tab3">
+					  <p>Howdy, I'm in Section 3</p>
+					</div>
+				  
+				  </div><!-- tab-content -->
+				</div><!-- tabbable -->
+				
+				  
+				
+
+				  
+
+
+			
+				
+			
 			</div>
 		</div>
 	</li>

@@ -1,0 +1,152 @@
+@mixin input-placeholder($color) {
+	&.placeholder {
+		color: $color; 
+		}
+	&:-moz-placeholder {
+		color: $color; 
+		}
+	&::-webkit-input-placeholder {
+		color: $color; 
+		} 
+} 
+
+@mixin input-default { 
+	border: 2px solid #F0F0F0; 
+	@include border-radius(4px);
+	background: white;
+	color: #2B3239;
+}
+@mixin input-active {
+	@include input-default;
+	border-color: $light_blue; 
+}
+
+body {
+	font-family: 'Arimo', Helvetica, sans-serif;
+	font-size: 62.5%;
+	background: $body_background;
+}
+
+@font-face{
+	font-family: "Batch";
+	src:url('../fonts/batch.eot');
+	src:url('../fonts/batch.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/batch.woff') format('woff'),
+	url('../fonts/batch.ttf') format('truetype'),
+	url('../fonts/batch.svg#batchregular') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+.batch {
+	font-family: "Batch";
+	font-size: 1em;
+	line-height: 1em;
+	display: inline-block;
+
+	&:before {
+		content:attr(data-icon);
+	}
+}
+#header {
+	height: 85px;
+	background: $dark_blue;
+	border-bottom: 3px solid $navigation_border;
+	img {
+		float: left;
+		margin: 19px 0px;
+	}
+	ul#menu {
+		float: right;
+		li {
+			float: left;
+			a {
+				font-size: 1.6em;
+				text-decoration: none;
+				outline: none;
+				display: block;
+				color: white;
+				padding: 53px 27px 19px;
+				position: relative;
+				&:hover, &.active {
+					background: $light_blue;
+				}	
+				span {
+					position: absolute;
+					top: 26px;
+					left: 50%;
+					margin-left: -0.5em;
+					font-size: 1.2em;
+				}
+			}
+		}
+	}
+}
+.button {
+	border: 0px;
+	text-decoration: none;
+	cursor: pointer; 
+	color: white;
+	background: $light_blue;
+	border: 2px solid $light_blue;
+	outline: none;
+	@include border-radius(4px);
+	font-weight: bold;
+	padding: 8px {
+		left: 12px;
+		right: 12px; 
+	}
+	&:hover, &.active {
+		border: 2px solid $light_blue;
+		background: white;
+		color: $light_blue;
+	}
+	&.cancel {
+		border: 2px solid $grey;
+		color: $grey;
+		background: white;
+		&:hover {
+			background: $grey;
+			color: white;
+			border: 2px solid $light_grey; 
+		} 
+	}
+	&.delete, &.red {
+		border: 2px solid $red;
+		background: $red;
+		color: white;
+		&:hover {
+			background: white;
+			border: 2px solid $red;
+			color: $red; 
+		} 
+	}
+}
+
+.wrapper {
+	width: $body_width_wide;
+	margin: 0 auto;
+}
+
+#breadcrumb {
+	text-align: left;
+	h2 {
+		display: inline-block;
+		font-size: 3em;
+		padding: 30px 0px;
+		color: $main_font_color;
+	}
+}
+
+@media screen and (max-width: 1400px) {
+	.wrapper {
+		width: $body_width;
+	}
+}
+input[type=text], input[type=password] {
+		@include input-placeholder($grey); 
+		@include input-default;
+		 &:focus {
+			@include input-active;
+		} 
+}

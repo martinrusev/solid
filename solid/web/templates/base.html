@@ -10,7 +10,9 @@
 	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
 	<link rel="icon" type="image/png" href="/media/images/favicon.png" />
+	<link rel="stylesheet" href="/media/css/bootstrap.css" />
 	<link rel="stylesheet" href="/media/css/style.css" />
+
 	{% block header %}{% endblock %}
 </head>
 <body>
@@ -20,18 +22,22 @@
 				<img src="/media/images/logo.png" alt="Solid logo" />
 			</a>
 			
-			<ul>
+			<ul id="menu">
 				<li>
 					<a href="/" class="active"><span class="batch" data-icon="&#xF161;"></span>Dashboard</a>
 				</li>
-				<li>
-					<a href=""><span class="batch" data-icon="&#xF17B;"></span>Settings</a>
+				<li class='dropdown'>
+				  	<a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="batch" data-icon="&#xF17B;"></span>Settings</a>
+					<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+					    <li><a href="#">This is a link</a></li>
+					</ul>
 				</li>
 				<li>
 					<a href="{{ base_url|url('logout') }}"><span class="batch" data-icon="&#xF069;"></span>Logout</a>
 				</li>
 			</ul>
 		</div>
+		
 	</div><!-- header END -->
 	<div id="breadcrumb">
 			<div class="wrapper">
@@ -42,6 +48,8 @@
 	{% block content %}{% endblock %}
 	</div><!-- content END --> 
 <script type="text/javascript" src='/media/js/libs/jquery.min.js'></script>
+<script type="text/javascript" src='/media/js/libs/bootstrap/bootstrap.min.js'></script>
+
 {% block js %}
 {% endblock %}
 </body>

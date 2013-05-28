@@ -60,21 +60,21 @@ body {
 #header img {
   float: left;
   margin: 19px 0px; }
-#header ul {
+#header ul#menu {
   float: right; }
-#header ul li {
+#header ul#menu li {
   float: left; }
-#header ul li a {
+#header ul#menu li a {
   font-size: 1.6em;
   text-decoration: none;
   outline: none;
   display: block;
   color: white;
-  padding: 57px 25px 15px;
+  padding: 53px 27px 19px;
   position: relative; }
-#header ul li a:hover, #header ul li a.active {
+#header ul#menu li a:hover, #header ul#menu li a.active {
   background: #3d8dc4; }
-#header ul li a span {
+#header ul#menu li a span {
   position: absolute;
   top: 26px;
   left: 50%;
@@ -223,7 +223,7 @@ div.center ul li.last {
 
 div.login_box {
   background: white;
-  border: 2px solid #e8edf0;
+  border: 3px solid #e8edf0;
   float: left;
   width: 100%;
   padding-bottom: 10px;
