@@ -1,0 +1,370 @@
+@import "compass/reset";
+@import "compass/css3";
+
+$light_blue: #46bcb7;
+$blue: #313d4c;
+$dark_blue: #171e26;
+
+$icon_color: #4f5761;
+
+$red: #ee3d44;
+
+$light_gray: #f4f9fc;
+$gray: #d7e3f3;
+$dark_gray: #bfcbda;
+
+$font_main_color: #232d39;
+$font_secondary_color: #8e99a8;
+$font_lighter_secondary_color: #9facbe;
+$font_occurrences_color: #c9d5e5;
+
+@mixin master_transition {
+	@include transition-property(all);
+	@include transition-duration(0.3s);
+}
+
+@mixin master_border_radius {
+	@include border-radius(3px);
+}
+
+@mixin sizing {
+	@include box-sizing(border-box);
+}
+
+.clearfix {
+	zoom:1;
+	&:before, &:after {
+		content: "\0020"; 
+		display: block; 
+		height: 0; 
+		overflow: hidden; 
+	}
+	&:after {
+		clear: both;
+	}
+}
+
+body {
+	font-family: 'Arimo', Helvetica, sans-serif;
+	font-size: 62.5%;
+}
+
+@font-face{
+	font-family: "Batch";
+	src:url('../fonts/batch.eot');
+	src:url('../fonts/batch.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/batch.woff') format('woff'),
+	url('../fonts/batch.ttf') format('truetype'),
+	url('../fonts/batch.svg#batchregular') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+.batch {
+	font-family: "Batch";
+	font-size: 1em;
+	line-height: 1em;
+	display: inline-block;
+
+	&:before {
+		content:attr(data-icon);
+	}
+}
+
+#navigation {
+	width: 100%;
+	height: 70px;
+	display: block;
+	background: $blue;
+	padding: 0 16px 0 34px;
+	@include sizing;
+
+	#logo {
+		width: 54px;
+		height: 30px;
+		display: block;
+		float: left;
+		background: url(../img/solid_logo.png) 0px 0px no-repeat transparent;
+		margin-top: 18px;
+	}
+
+	ul {
+		float: left;
+		margin: 14px 0 0 50px;
+
+		li {
+			display: inline-block;
+			height: 100%;
+			margin-right: 20px;
+
+			a {
+				color: #ffffff;
+				text-decoration: none;
+				font-size: 1.6em;
+				line-height: 2.7em;
+				padding: 0 20px;
+				display: block;
+				height: 42px;
+				@include sizing;
+				@include master_transition;
+
+				&.active, &:hover {
+					background: $dark_blue;
+					@include master_border_radius;
+				}
+			}
+		}
+	}
+
+	#logout {
+		float: right;
+		color: #ffffff;
+		text-decoration: none;
+		font-size: 1.6em;
+		padding: 16px 0 0;
+		display: block;
+		height: 100%;
+		@include sizing;
+
+		.batch {
+			background: $dark_blue;
+			@include border-radius(35px);
+			width: 36px;
+			height: 36px;
+			color: #ffffff;
+			margin: 0 15px 0 10px;
+			text-align: center;
+			line-height: 2.1em;
+		}
+	}
+}
+
+#dashboard {
+	width: 100%;
+	@include box-sizing(border-box);
+
+	.day {
+		width: 100%;
+
+		> div {
+			color: #ffffff;
+			font-size: 1.8em;
+			padding: 11px 18px;
+			background: $light_blue;
+			display: inline-block;
+			position: relative;
+			width: 100%;
+			@include sizing;
+		}
+
+		> ul {
+			width: 100%;
+			padding: 0 0 0 59px;
+			@include sizing;
+
+			> li {
+				border-left: 5px solid $gray;
+				width: 100%;
+				@include sizing;
+				padding: 18px 0 0 0;
+				position: relative;
+
+				&:before {
+					position: absolute;
+					background: #ffffff;
+					@include border-radius(100px);
+					border: 5px solid $gray;
+					display: block;
+					content: "";
+					width: 52px;
+					height: 52px;
+					top: 16px;
+					left: -33px;
+					content: attr(data-occurrences);
+					text-align: center;
+					font-size: 3em;
+					line-height: 1.8em;
+					color: $font_occurrences_color;
+				}
+
+				.time {
+					color: $font_main_color;
+					font-size: 1.6em;
+					position: absolute;
+					padding: 0 0 8px 0;
+					top: 95px;
+					left: -64px;
+					border-bottom: 5px solid $gray;
+					width: 59px;
+					text-align: center;
+				}
+
+				.occurrences {
+					color: $font_occurrences_color;
+					font-size: 3em;
+					line-height: 1.8em;
+					position: absolute;
+					top: 21px;
+					left: -28px;
+					width: 52px;
+					height: 52px;
+					text-align: center;
+				}
+
+				.info {
+					width: 100%;
+					@include sizing;
+					padding: 0 0 0 43px;
+
+					li {
+						margin-bottom: 10px;
+
+						&:nth-child(2) {
+							margin-bottom: 25px;
+						}
+					}
+
+					h2 {
+						color: $font_main_color;
+						font-size: 2.4em;
+					}
+
+					p {
+						color: $font_secondary_color;
+						font-size: 2em;
+					}
+
+					li:last-child {
+
+						p {
+							color: $font_lighter_secondary_color;
+							font-size: 1.5em;
+						}
+					}
+				}
+
+				.code {
+					background: url(../img/code_background.png) repeat-y 41px 0px $light_gray;
+					width: 100%;
+					@include sizing;
+					padding: 0 0 0 43px;
+					position: relative;
+					overflow: hidden;
+					height: 38px;
+
+					a {
+						width: 24px;
+						height: 24px;
+						background: $red;
+						position: absolute;
+						@include border-radius(3px);
+						left: 8px;
+						top: 7px;
+						color: #ffffff;
+						text-decoration: none;
+						text-align: center;
+						line-height: 1.5em;
+						font-size: 1.6em;
+
+						&.batch:before {
+							content: attr(data-open);
+						}
+
+						&.opened.batch:before {
+							content: attr(data-close);
+						}
+					}
+
+					ul li {
+						overflow: hidden;
+						position: relative;
+						width: 100%;
+						@include sizing;
+						padding: 0 0 0 42px;
+
+						pre, span {
+							font-size: 1.5em;
+						}
+
+						pre {
+							color: $font_main_color;
+							margin: 6px 0;
+							word-break: break-word;
+						}
+
+						span {
+							width: 35px;
+							display: block;
+							text-align: center;
+							float: left;
+							color: $font_secondary_color;
+							position: absolute;
+							left: -2px;
+							margin: 6px 0px;
+						}
+
+						&:first-child {
+
+							pre {
+								margin-top: 12px;
+							}
+
+							span {
+								margin-top: 12px;
+							}
+						}
+
+						&:last-child {
+							
+							pre {
+								margin-bottom: 12px;
+							}
+						}
+					}
+				}
+
+				.tabs_navigation {
+					@extend .clearfix;
+					background: $gray;
+
+					li {
+						float: left;
+						margin: 5px 5px 0 0;
+
+						a {
+							text-decoration: none;
+							color: #ffffff;
+							font-size: 1.8em;
+							line-height: 2.5em;
+							height: 44px;
+							padding: 0 15px;
+							background: $dark_gray;
+							display: block;
+							@include master_transition;
+
+							&.active, &:hover {
+								background: #ffffff;
+								color: $font_main_color;
+							}
+						}
+					}
+				}
+
+				.tabs {
+					overflow: hidden;
+
+					.backtrace {
+						
+						p {
+							width: 100%;
+							@include sizing;
+							padding: 6px 0 6px 45px;
+							color: $font_lighter_secondary_color;
+							font-size: 1.5em;
+						}
+					}
+				}
+			}
+		}
+	}
+}

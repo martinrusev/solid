@@ -1,0 +1,7 @@
+guard 'livereload' do
+	watch(%r{.+\.(css|html|js)$})
+end
+
+guard 'sass', :input => 'scss', :output => 'css', :compass => true
+
+notification :notifu, :time => 3, :nosound => true, :xp => true
