@@ -1,113 +1,107 @@
 {% extends "base.html" %}
 {% block title %}Dashboard{% endblock %}
-{% block breadcrumb %}Dashboard{% endblock breadcrumb %}
 {% block content %}
-<ul id="exceptions-list">
-	{% for exception in exceptions.clone()  %}
-	<li>
-		<div class="wrapper exception-wrapper">
-			<div class="sidebar">
-				<span class='occurrences'>{{ exception.total_occurrences }}</span>
-			</div>
-			<div class="info">
-				{% if exception.exception_class  %}
-					<h3>{{ exception.exception_class }}</h3>	
-				{% endif %}
-				<h4>{{ exception.message }}</h4>
-				<div class="last_occurence">
-					<span class="batch" data-icon="&#xF090;"></span>
-					<span>{{ exception.last_occurrence|date_local }}</span>
-				</div>
-				{{ exception.context.filepath }} - {{ exception.context.culprit_lineno }}
-				{% strip %}
-				<pre>
-					<code>
-						{% for line in exception.context.pre_context  %}
-							{{ line }}
-						{% endfor %}
-					</code>
-				</pre>
-				<pre class='highlight'>
-					<code>
-						{% for line in exception.context.context_line  %}
-							{{ line }}
-						{% endfor %}
-					</code>
-				</pre>
-				<pre>
-					<code>
-						{% for line in exception.context.post_context  %}
-							{{ line }}
-						{% endfor %}
-					</code>
-				</pre>
-				{% endstrip %}
-				<div class="tabbable"> <!-- Only required for left/right tabs -->
-				  <ul class="nav nav-tabs">
-					{% if exception.backtrace %}
-						<li class="active"><a href="#tab1" data-toggle="tab">Backtrace</a></li>
-				   {% endif %}
-				   {% if exception.request %}
-						<li><a href="#tab2" data-toggle="tab">Request</a></li>
-				   {% endif %}
-						
-						<li><a href="#tab3" data-toggle="tab">History</a></li>
-				  </ul>
-				  <div class="tab-content">
-					{% if exception.backtrace %}
-					<div class="tab-pane active" id="tab1">
-					  <p>
-						{% for line in exception.backtrace %}
-							<span >{{ loop.index }}. {{ line }} <br></span>
-							{% if loop.index == 5 %}
-							<p class="hidden" id='full-trace-{{ exception._id }}'>{% endif %}
-							{% if loop.last %}</p>{% endif %}
-						{% endfor %}
-						</p>
-					</div>
-					{% endif %}
-					 {% if exception.request %}
-					<div class="tab-pane" id="tab2">
-						<table>
-							<tr>
-								<td>URL</td>
-								<td>{{ exception.request.url }}</td>
-							</tr>
-							<tr>
-								<td>Method</td>
-								<td>{{ exception.request.method }}</td>
-							</tr>
-							<tr>
-								<td>Cookies</td>
-								<td>{{ exception.request.cookies }}</td>
-							</tr>
-							<tr>
-								<td>Headers</td>
-								<td>{{ exception.request.headers }}</td>
-							</tr>
-						</table>
-					</div>
-					{% endif %}
 
-					<div class="tab-pane" id="tab3">
-					  <p>Howdy, I'm in Section 3</p>
-					</div>
-				  
-				  </div><!-- tab-content -->
-				</div><!-- tabbable -->
-				
-				  
-				
+<!-- Dashboard -->
+<div id="dashboard">
+			<div class="day">
+				<div>Today (21.06.2013)</div>
+				<ul>
+					{% for exception in exceptions.clone()  %}
+					<li>
+						<div class="occurrences">{{ exception.total_occurrences }}</div>
+						<div class="time">{{ exception.last_occurrence|date_local }}</div>
+						<ul class="info">
+							<li><h2>{{ exception.exception_class }}</h2></li>
+							<li><p>{{ exception.message }}</p></li>
+							<li><p>{{ exception.context.filepath }} -g{{ exception.context.culprit_lineno }}</p></li>
+						</ul>
+						<div class="code">
+							<a href="" class="open-code batch" data-open="&#xF0A0;" data-close="&#xF0A1;"></a>
+							<ul>
+								{% for line in exception.context.pre_context  %}
+									<li><span></span><pre>{{ line }}</pre></li>
+								{% endfor %}
+								{% for line in exception.context.context_line  %}
+									<li><span></span><pre>{{ line }}</pre></li>
+								{% endfor %}
+								{% for line in exception.context.post_context  %}
+									<li><span></span><pre>{{ line }}</pre></li>
+								{% endfor %}
+							</ul>
+						</div>
+						<ul class="tabs_navigation">
+							<li><a data-tab="backtrace-{{ exception._id }}">Backtrace</a></li>
+							<li><a data-tab="history-{{ exception._id }}">History</a></li>
+							<li><a data-tab="request-{{ exception._id }}">Request</a></li>
+						</ul>
+						<ul class="tabs">
+							<li class="backtrace" data-tab="backtrace-{{ exception._id }}">
+								<ul>
+									<li>
+										<p>/home/martin/solid-python-projects/soliddjango/soliddjango/apps/core/views.py </p>
+										<div class="code">
+											<a href="" class="open-code batch" data-open="&#xF0A0;" data-close="&#xF0A1;"></a>
+											<ul>
+												{% for line in exception.backtrace %}
+													<li><span>{{ loop.index }}.</span><pre>{{ line }}</pre></li>
+												{% endfor %}
+											</ul>
+										</div>
+									</li>
+									
+								</ul>
+							</li>
+							<li data-tab="history-{{ exception._id }}"></li>
+							<li data-tab="request-{{ exception._id }}">
+								<table class="table">
+									<tbody>
+										<tr>
+											<th>URL</th>
+											<td>{{ exception.request.url }}</td>
+										</tr>
+										<tr>
+											<th>Method</th>
+											<td>{{ exception.request.method }}</td>
+										</tr>
+										<tr>
+											<th>Cookies</th>
+											<td>
+												<table>
+													<tr>
+														<td>_xsrf</td>
+														<td>{{ exception.request.cookies }}</td>
+													</tr>
+													<tr>
+														<td>solid_session_id</td>
+														<td>sdsdsdsa3q4sdffsdfsdfsdfsdfsdfsdfsdf</td>
+													</tr>
+												</table>
+											</td>
+										</tr>
+										<tr>
+											<th>Headers</th>
+											<td>
+												<table>
+													<tr>
+														<td>{{ exception.request.headers }}</td>
+														<td>90394</td>
+													</tr>
+													<tr>
+														<td>Accept-Language</td>
+														<td>en-US</td>
+													</tr>
+												</table>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</li>
+						</ul>
+					</li>
+					{% endfor %}
+				</ul>
+			</div><!-- day END -->
+		</div><!-- dashboard END -->
 
-				  
-
-
-			
-				
-			
-			</div>
-		</div>
-	</li>
-	{% endfor %}
-</ul>
 {% endblock content %}

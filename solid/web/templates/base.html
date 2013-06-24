@@ -1,55 +1,106 @@
-<!doctype html>
-<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
-<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
-<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
-<head>
-	<title>Solid {{ version }} - {% block title %} {% endblock %}</title>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
-	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
-	<link rel="icon" type="image/png" href="/media/images/favicon.png" />
-	<link rel="stylesheet" href="/media/css/bootstrap.css" />
-	<link rel="stylesheet" href="/media/css/style.css" />
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+		<title>Solid {{ version }} - {% block title %} {% endblock %}</title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width">
 
+		<link rel="stylesheet" href="/media/css/style.css">
+	
 	{% block header %}{% endblock %}
-</head>
-<body>
-	<div id="header">
-		<div class="wrapper">
-			<a class='logo' href="/">
-				<img src="/media/images/logo.png" alt="Solid logo" />
-			</a>
-			
-			<ul id="menu">
-				<li>
-					<a href="/" class="active"><span class="batch" data-icon="&#xF161;"></span>Dashboard</a>
-				</li>
-				<li class='dropdown'>
-				  	<a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="batch" data-icon="&#xF17B;"></span>Settings</a>
-					<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-					    <li><a href="#">This is a link</a></li>
-					</ul>
-				</li>
-				<li>
-					<a href="{{ base_url|url('logout') }}"><span class="batch" data-icon="&#xF069;"></span>Logout</a>
-				</li>
-			</ul>
-		</div>
-		
-	</div><!-- header END -->
-	<div id="breadcrumb">
-			<div class="wrapper">
-				<h2>{% block breadcrumb %}{% endblock breadcrumb %}</h2>
-			</div>
-	</div><!-- breadcrumb END -->
-	<div id="content">
-	{% block content %}{% endblock %}
-	</div><!-- content END --> 
-<script type="text/javascript" src='/media/js/libs/jquery.min.js'></script>
-<script type="text/javascript" src='/media/js/libs/bootstrap/bootstrap.min.js'></script>
+	</head>
+	<body>
 
+	
+		<!-- Navigation -->
+		<div id="navigation">
+			<a href="" id="logo"></a>
+			<ul>
+				<li><a href="" class="active">Dashboard</a></li>
+				<li><a href="">Settings</a></li>
+			</ul>
+			<div id="logout">
+				Hello, Martin
+				<a href="{{ base_url|url('logout') }}"><span class="batch" data-icon="&#xF069;"></span></a>
+			</div>
+			
+		</div>
+		{% block content %}
+			
+		{% endblock content %}
+
+
+	
+<script type="text/javascript" src='/media/js/libs/jquery.min.js'></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	
+	// open code
+	$('.open-code').click(function(e){
+		e.preventDefault();
+
+		if($(this).hasClass('opened')) {
+
+			$(this).parent().animate({
+				height: "38px"
+			}, 200);
+
+			$(this).removeClass('opened');
+
+		} else {
+
+			$(this).addClass('opened');
+
+			var element_height = $(this).siblings('ul').height();
+
+			$(this).parent().animate({
+				height: element_height + "px"
+			}, 200, function() {
+				$(this).css( "height", "auto" );
+				});
+		}
+	});
+	// open code end
+
+	// tabs responsive
+	$(".tabs_navigation a").click(function(e){
+		e.preventDefault();
+
+		// variables
+		tabs_navigation = $(this).closest(".tabs_navigation");
+		tabs = tabs_navigation.siblings(".tabs");
+		tab_selected = $(this).data("tab");
+
+
+		// tabs navigation
+		tabs_navigation.find("a.active").removeClass("active");
+		$(this).addClass("active");
+
+		// tabs
+		tabs.find(".active_tab").fadeOut(300);
+
+		tab_element = tabs.find("[data-tab='" + tab_selected + "']");
+		tabs.animate({
+			height: tab_element.height()
+		}, 300, function(){
+			$(this).css( "height", "auto" );
+		});
+
+		tab_element.fadeIn(300, function(){
+			tabs.find(".active_tab").removeClass("active_tab");
+			$(this).addClass("active_tab");
+		});
+
+	});
+});
+</script>
 {% block js %}
 {% endblock %}
 </body>
