@@ -26,12 +26,8 @@ ul#exceptions-list {
 			position: absolute;
 			@include box-sizing(border-box);
 			.occurrences {
-				background: #f8f8f8;
-				border: 3px solid $border_color;
-				@include border-radius(50%);
-				padding-top: 17px;
 				padding-bottom: 17px;
-				font-size: 2.8em;
+				font-size: 6em;
 				font-weight: bold;
 				text-align: center;
 			}
