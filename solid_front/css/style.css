@@ -325,7 +325,16 @@ body {
                 background: #ffffff;
                 color: #232d39; }
         #dashboard .day > ul > li .tabs {
-          overflow: hidden; }
+          overflow: hidden;
+          position: relative; }
+          #dashboard .day > ul > li .tabs > li {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            display: none;
+            width: 100%; }
+            #dashboard .day > ul > li .tabs > li.active_tab {
+              position: relative; }
           #dashboard .day > ul > li .tabs .backtrace p {
             width: 100%;
             -webkit-box-sizing: border-box;
@@ -334,3 +343,22 @@ body {
             padding: 6px 0 6px 45px;
             color: #9facbe;
             font-size: 1.5em; }
+
+.table {
+  width: 100%;
+  font-size: 1.6em;
+  color: #8e99a8; }
+  .table > tbody > tr:nth-child(2n) {
+    background: #f4f9fc; }
+  .table > tbody > tr > th {
+    color: #232d39;
+    vertical-align: top;
+    padding: 18px; }
+  .table > tbody > tr > td tr td {
+    padding: 9px 18px 9px 0; }
+  .table > tbody > tr > td tr:first-child td {
+    padding: 18px 18px 9px 0; }
+  .table > tbody > tr > td tr:last-child td {
+    padding: 9px 18px 18px 0; }
+  .table > tbody th, .table > tbody td {
+    word-break: break-word; }

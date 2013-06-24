@@ -352,9 +352,22 @@ body {
 
 				.tabs {
 					overflow: hidden;
+					position: relative;
+
+					> li {
+						position: absolute;
+						left: 0px;
+						top: 0px;
+						display: none;
+						width: 100%;
+
+						&.active_tab {
+							position: relative;
+						}
+					}
 
 					.backtrace {
-						
+
 						p {
 							width: 100%;
 							@include sizing;
@@ -368,3 +381,47 @@ body {
 		}
 	}
 }
+
+
+// table styles
+
+.table {
+	width: 100%;
+	font-size: 1.6em;
+	color: $font_secondary_color;
+
+	> tbody{
+
+		> tr:nth-child(2n) {
+			background: $light_gray;
+		}
+
+		> tr > th {
+			color: $font_main_color;
+			vertical-align: top;
+			padding: 18px;
+		}
+
+		> tr > td tr {
+
+			td {
+				padding: 9px 18px 9px 0;
+			}
+
+			&:first-child td {
+				padding: 18px 18px 9px 0;
+			}
+
+			&:last-child td {
+				padding: 9px 18px 18px 0;
+			}
+		}
+
+
+		th, td {
+			word-break: break-word;
+		}
+	}
+}
+
+// table 
