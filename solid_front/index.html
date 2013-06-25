@@ -266,6 +266,8 @@
 			// open code end
 
 			// tabs responsive
+			var done = true;
+
 			$(".tabs_navigation a").click(function(e){
 				e.preventDefault();
 
@@ -273,28 +275,40 @@
 				tabs_navigation = $(this).closest(".tabs_navigation");
 				tabs = tabs_navigation.siblings(".tabs");
 				tab_selected = $(this).data("tab");
-
-
-				// tabs navigation
-				tabs_navigation.find("a.active").removeClass("active");
-				$(this).addClass("active");
-
-				// tabs
-				tabs.find(".active_tab").fadeOut(300);
-
 				tab_element = tabs.find("[data-tab='" + tab_selected + "']");
-				tabs.animate({
-					height: tab_element.height()
-				}, 300, function(){
-					$(this).css( "height", "auto" );
-				});
 
-				tab_element.fadeIn(300, function(){
-					tabs.find(".active_tab").removeClass("active_tab");
-					$(this).addClass("active_tab");
-				});
+
+				if ($(this).hasClass("active") || !done) {
+
+					return;
+
+				} else {
+
+					done = false;
+
+					// tabs navigation
+					tabs_navigation.find("a.active").removeClass("active");
+					$(this).addClass("active");
+
+					// tabs
+					tabs.find(".active_tab").fadeOut(300);
+
+					tabs.animate({
+						height: tab_element.height()
+					}, 300, function(){
+						$(this).css( "height", "auto" );
+					});
+
+					tab_element.fadeIn(300, function(){
+						tabs.find(".active_tab").removeClass("active_tab");
+						$(this).addClass("active_tab");
+						done = true;
+					});
+
+				};
 
 			});
+			// tabs responsive end
 		});
 		</script>
 	</body>
