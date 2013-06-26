@@ -1,0 +1,7 @@
+FormEncode==1.2.6
+Jinja2==2.7
+MarkupSafe==0.18
+argparse==1.2.1
+pymongo==2.5.1
+pytz==2013b
+tornado==3.0.1
