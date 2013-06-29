@@ -10,48 +10,42 @@
 					{% for exception in exceptions.clone()  %}
 					<li>
 						<div class="occurrences">{{ exception.total_occurrences }}</div>
-						<div class="time">{{ exception.last_occurrence|date_local }}</div>
+						<div class="time">{{ exception.last_occurrence|time_local }}</div>
 						<ul class="info">
 							<li><h2>{{ exception.exception_class }}</h2></li>
 							<li><p>{{ exception.message }}</p></li>
-							<li><p>{{ exception.context.filepath }} -g{{ exception.context.culprit_lineno }}</p></li>
+							<li><p>{{ exception.context.filepath }}({{ exception.context.culprit_lineno }})</p></li>
 						</ul>
 						<div class="code">
 							<a href="" class="open-code batch" data-open="&#xF0A0;" data-close="&#xF0A1;"></a>
 							<ul>
 								{% for line in exception.context.pre_context  %}
-									<li><span></span><pre>{{ line }}</pre></li>
+									<li><span>{{ line.0 }}</span><pre>{{ line.1 }}</pre></li>
 								{% endfor %}
-								{% for line in exception.context.context_line  %}
-									<li><span></span><pre>{{ line }}</pre></li>
-								{% endfor %}
+									<li><span>{{ exception.context.context_line.0 }}</span><pre>{{ exception.context.context_line.1 }}</pre></li>
 								{% for line in exception.context.post_context  %}
-									<li><span></span><pre>{{ line }}</pre></li>
+									<li><span>{{ line.0 }}</span><pre>{{ line.1 }}</pre></li>
 								{% endfor %}
 							</ul>
 						</div>
 						<ul class="tabs_navigation">
-							<li><a data-tab="backtrace-{{ exception._id }}">Backtrace</a></li>
+							{% if exception.backtrace %}
+								<li><a data-tab="backtrace-{{ exception._id }}">Backtrace</a></li>
+							{% endif %}
+							
 							<li><a data-tab="history-{{ exception._id }}">History</a></li>
 							<li><a data-tab="request-{{ exception._id }}">Request</a></li>
 						</ul>
 						<ul class="tabs">
+							{% if exception.backtrace %}
 							<li class="backtrace" data-tab="backtrace-{{ exception._id }}">
 								<ul>
-									<li>
-										<p>/home/martin/solid-python-projects/soliddjango/soliddjango/apps/core/views.py </p>
-										<div class="code">
-											<a href="" class="open-code batch" data-open="&#xF0A0;" data-close="&#xF0A1;"></a>
-											<ul>
-												{% for line in exception.backtrace %}
-													<li><span>{{ loop.index }}.</span><pre>{{ line }}</pre></li>
-												{% endfor %}
-											</ul>
-										</div>
-									</li>
-									
+									{% for line in  exception.backtrace  %}
+									<li><p>{{ line }}</p></li>
+									{% endfor %}
 								</ul>
 							</li>
+							{% endif %}
 							<li data-tab="history-{{ exception._id }}"></li>
 							<li data-tab="request-{{ exception._id }}">
 								<table class="table">
@@ -67,30 +61,28 @@
 										<tr>
 											<th>Cookies</th>
 											<td>
+												{% set cookies=exception.request.cookies %}
 												<table>
+													 {% for key, value in cookies.items()  %}													
 													<tr>
-														<td>_xsrf</td>
-														<td>{{ exception.request.cookies }}</td>
+														<td> {{ key }}</td>
+														<td>{{ value }}</td>
 													</tr>
-													<tr>
-														<td>solid_session_id</td>
-														<td>sdsdsdsa3q4sdffsdfsdfsdfsdfsdfsdfsdf</td>
-													</tr>
+													{% endfor %}
 												</table>
 											</td>
 										</tr>
 										<tr>
 											<th>Headers</th>
 											<td>
+												{% set headers=exception.request.headers %}
 												<table>
+													 {% for key, value in headers.items()  %}													
 													<tr>
-														<td>{{ exception.request.headers }}</td>
-														<td>90394</td>
+														<td> {{ key }}</td>
+														<td>{{ value }}</td>
 													</tr>
-													<tr>
-														<td>Accept-Language</td>
-														<td>en-US</td>
-													</tr>
+													{% endfor %}
 												</table>
 											</td>
 										</tr>

@@ -14,7 +14,8 @@ from solid.utils.dates import (
 	utc_unixtime_to_localtime,
 	dateformat_local,
 	dateformat,
-	timeformat
+	timeformat,
+	timeformat_local
 )
 
 from solid.web.libs.jinja2htmlcompress import SelectiveHTMLCompress
@@ -159,7 +160,7 @@ class RecursiveDict(object):
 				if v and k != 'occurrence':
 					self.html += u'<li><span class="key_inner">{0}:</span><span class="value_inner">{1}</span></li>'.format(k,v)
 
-def exceptions_dict(dict):
+def recursive_dict(dict):
 	dict_recursion = RecursiveDict()
 	dict_recursion.walk_dict_exception(dict)
 
@@ -278,18 +279,18 @@ def render(template, *args, **kwargs):
 
 	# Used everywhere
 	env.filters['time'] = timeformat
+	env.filters['time_local'] = timeformat_local
 	env.filters['date_to_js'] = date_to_js
 	env.filters['date'] = dateformat
 	env.filters['date_local'] = dateformat_local
 	env.filters['to_int'] =  to_int
 	env.filters['time_in_words'] = time_in_words 
-	env.filters['exceptions_dict'] = exceptions_dict
+	env.filters['recursive_dict'] = recursive_dict
 	env.filters['check_additional_data'] = check_additional_data
 	env.filters['clean_slashes'] = clean_slashes
 	env.filters['beautify_json'] = beautify_json
 	env.filters['get_active_page'] = get_active_page # Used to mark links as active
 	env.filters['extract_days_from_unixdate'] = extract_days_from_unixdate
-
 	env.filters['format_float'] = format_float
 
 	# Log filters
