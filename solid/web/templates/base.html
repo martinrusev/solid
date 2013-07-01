@@ -17,14 +17,12 @@
 	{% block header %}{% endblock %}
 	</head>
 	<body>
-
-	
 		<!-- Navigation -->
 		<div id="navigation">
 			<a href="" id="logo"></a>
 			<ul>
-				<li><a href="" class="active">Dashboard</a></li>
-				<li><a href="">Settings</a></li>
+				<li><a href="{{ base_url }}" >Dashboard</a></li>
+				<li><a href="{{ base_url|url('settings') }}">Settings</a></li>
 			</ul>
 			<div id="logout">
 				Hello, Martin

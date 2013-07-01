@@ -5,12 +5,12 @@
 <!-- Dashboard -->
 <div id="dashboard">
 			<div class="day">
-				<div>Today (21.06.2013)</div>
+				
 				<ul>
 					{% for exception in exceptions.clone()  %}
 					<li>
 						<div class="occurrences">{{ exception.total_occurrences }}</div>
-						<div class="time">{{ exception.last_occurrence|time_local }}</div>
+						<div class="time">{{ exception.last_occurrence|date_local}}</div>
 						<ul class="info">
 							<li><h2>{{ exception.exception_class }}</h2></li>
 							<li><p>{{ exception.message }}</p></li>

@@ -112,7 +112,6 @@ def timeformat(value, format='%H:%M'):
 	return _.strftime(format)
 
 
-
 def timeformat_local(value, format='%H:%M'):
 	value = utc_unixtime_to_localtime(value)
 

@@ -12,10 +12,12 @@ from solid import __version__
 from datetime import datetime, time
 from solid.utils.dates import ( 
 	utc_unixtime_to_localtime,
+	utc_now_to_localtime,
 	dateformat_local,
 	dateformat,
 	timeformat,
-	timeformat_local
+	timeformat_local,
+	datestring_to_utc_datetime,
 )
 
 from solid.web.libs.jinja2htmlcompress import SelectiveHTMLCompress
@@ -25,8 +27,10 @@ def age(from_date, since_date = None, target_tz=None, include_seconds=False):
 	'''
 	Returns the age as a string
 	'''
-	if since_date is None:
-		since_date = datetime.now(target_tz)
+	since_date =  utc_now_to_localtime()
+	from_date =  datestring_to_utc_datetime(from_date)
+
+
 
 	distance_in_time = since_date - from_date
 	distance_in_seconds = int(round(abs(distance_in_time.days * 86400 + distance_in_time.seconds)))
@@ -73,12 +77,7 @@ def time_in_words(value):
 	'''
 	Usage: {{ my_date_variable|time_in_words }}
 	'''
-	# if DateTimeFiled() or datetime.datetime variable
-	try:
-		time_ago = age(value)
-	except:
-		null_time = time()
-		time_ago = age(datetime.combine(value, null_time))
+	time_ago = age(value)
 
 	return time_ago
 
@@ -284,7 +283,7 @@ def render(template, *args, **kwargs):
 	env.filters['date'] = dateformat
 	env.filters['date_local'] = dateformat_local
 	env.filters['to_int'] =  to_int
-	env.filters['time_in_words'] = time_in_words 
+	# env.filters['time_in_words'] = time_in_words 
 	env.filters['recursive_dict'] = recursive_dict
 	env.filters['check_additional_data'] = check_additional_data
 	env.filters['clean_slashes'] = clean_slashes
